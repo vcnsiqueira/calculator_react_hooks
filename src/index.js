@@ -1,15 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import Calculator from './main/Calculator';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <h1>Calculadora</h1>
+    <Calculator />
   </React.StrictMode>,
   document.getElementById('root')
 );
+
+if(module.hot) {
+  module.hot.accept();
+};
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
