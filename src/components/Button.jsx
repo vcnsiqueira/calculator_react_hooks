@@ -1,9 +1,17 @@
 import React from 'react';
 import './Button.css';
 
-const Button = ({ label }) => {
+const Button = ({ label, operation, double, triple, onClick}) => {
+    
+    let classes = `button ${operation ? 'operation' : ''} ${double ? 'double' : ''} ${triple ? 'triple' : ''}`
+
     return(
-        <button className="button">{label}</button>
+        <button 
+            className={classes}
+            onClick={event => onClick && onClick(label)}
+        >
+            {label}
+        </button>
     );
 }
 
