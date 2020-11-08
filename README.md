@@ -1,3 +1,7 @@
+# About
+
+This project is a simple calculator created with React and styled as the Mac calculator with vanilla CSS
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
