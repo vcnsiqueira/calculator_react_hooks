@@ -20,8 +20,34 @@ const Calculator = () => {
         setCurrent(0);
     };
 
-    const handleOperation = operation => {
-        console.log(operation);
+    const handleOperation = op => {
+        if (current === 0) {
+            setCurrent(1);
+            setOperation(op);
+            setClearDisplay(true);
+        } else {
+            const equality = op === '=';
+            const currentOperation = operation;
+
+            const newValues = [...values];
+            if (currentOperation === '+') {
+                newValues[0] = values[0] + values[1]
+            } else if (currentOperation === '-') {
+                newValues[0] = values[0] - values[1]
+            } else if (currentOperation === '*') {
+                newValues[0] = values[0] * values[1]
+            } else if (currentOperation === '/') {
+                newValues[0] = values[0] / values[1]
+            }
+            //newValues[0] = eval(`${values[0]} ${currentOperation} ${values[1]}`);
+            newValues[1] = 0;
+
+            setDisplayValue(newValues[0]);
+            setOperation(equality ? null : op);
+            setCurrent(equality ? 0 : 1);
+            setClearDisplay(!equality);
+            setValues(newValues);
+        }
     };
 
     const addDigit = n => {
@@ -30,13 +56,20 @@ const Calculator = () => {
         }
 
         const clear = displayValue === '0' || clearDisplay
-        console.log('clear: ' + clear);
         const currentValue = clear ? '' : displayValue
-        console.log('currentValue: ' + currentValue);
         const showValue = currentValue + n
 
         setDisplayValue(showValue);
         setClearDisplay(false);
+
+        if (n !== '.') {
+            const i = current;
+            const newValue = parseFloat(showValue)
+            const newValues = [...values]
+            newValues[i] = newValue
+            setValues(newValues);
+            console.log(newValues);
+        }
     };
 
     return(
